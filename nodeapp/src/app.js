@@ -1,5 +1,8 @@
 const express = require('express');
 const cors = require('cors');
+const db = require('./configs/database.config');
+
+db.connectDB();
 
 const app = express();
 
@@ -13,4 +16,6 @@ app.get('/', ( req, res ) => {
 });
 
 
-module.exports = app;
+module.exports = {
+    app
+};
