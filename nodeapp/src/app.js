@@ -1,6 +1,9 @@
 const express = require('express');
 const cors = require('cors');
 const db = require('./configs/database.config');
+// Import routes
+const FilesRoutes = require('./routes/files.routes');
+
 
 db.connectDB();
 
@@ -15,6 +18,7 @@ app.get('/', ( req, res ) => {
     res.json({ message: 'Welcome to my app '});
 });
 
+app.use('/api', FilesRoutes);
 
 module.exports = {
     app

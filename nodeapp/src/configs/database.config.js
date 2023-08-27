@@ -11,7 +11,7 @@ async function connectDB() {
     let conn;
     try {
         conn = await pool.getConnection();
-        console.log('Conexión realizada con éxito');
+        console.log('Connection with GENERADOR_HORARIOS db is successful');
     } catch (err) {
         throw err;
     } finally {
