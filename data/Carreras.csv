@@ -1,4 +1,6 @@
 id,division,nombre
-58,Ingeniería,Ingeniería en Ciencias y Sistemas
-59,Ingeniería,Ingeniería Civil
-60,Ingeniería,Ingeniería Mecánica
+1,Ingenieria,Ingenieria Civil
+2,Ingenieria,Ingenieria Industrial
+3,Ingenieria,Ingenieria Mecanica
+4,Ingenieria,Ingenieria Mecanica Industrial
+5,Ingenieria,Ingenieria en Ciencias y Sistemas

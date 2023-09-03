@@ -8,6 +8,6 @@ const storage = multer.memoryStorage();
 const upload = multer({ storage: storage });
 
 // ruta en la que recibimos n archivos
-router.post('/sendFiles', upload.array('files', 2), filesController.proccessCsvFiles);
+router.post('/sendFiles', upload.array('files', 3), filesController.proccessCsvFiles);
 
 module.exports = router;
