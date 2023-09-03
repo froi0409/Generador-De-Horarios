@@ -4,36 +4,45 @@ const inserts = require('../services/databaseManagement/inserts');
 
 const proccessCsvFiles =  async ( req, res ) => { 
     const files = req.files; // Get files
-    const dataSets = [];
     // Define a mapping of file names to insertion functions
     const insertFunctions = {
         'Salones.csv': inserts.insertSalones,
         'Carreras.csv': inserts.insertCarreras,
         'Profesores.csv': inserts.insertProfesores,
+        'Materias.csv': inserts.insertMaterias,
+        'Carrera_Cursos.csv': inserts.insertCarreraCurso,
+        'Materias_Profesores.csv': inserts.insertProfessorCourse,
+        'Secciones.csv': inserts.insertSection
     };
 
 
-    for (const file of files) {
-        const jsonFile = await csvFM.parseCsvToJson(file);
-        dataSets.push({
-            filename: file.originalname,
-            dataset: jsonFile
-        });
-    }
+    const processQueue = [];
 
-    for (const dataset of dataSets) {
-        const insertFunction = insertFunctions[dataset.filename];
+    for (const file of files) {
+        const fileName = file.originalname;
+        const insertFunction = insertFunctions[fileName];
+
         if (insertFunction) {
-            insertFunction(dataset);
+            // Crear una promesa que representa el procesamiento de este archivo
+            const filePromise = async () => {
+                try {
+                    const jsonFile = await csvFM.parseCsvToJson(file);
+                    const result = await insertFunction(jsonFile);
+                    console.log(result);
+                } catch (error) {
+                    console.error(`Error al procesar ${fileName}:`, error);
+                }
+            };
+
+            processQueue.push(filePromise);
         }
     }
 
-    // dataSets.forEach(element => {
-    //     console.log(element.filename, ': ');
-    //     element.dataset.forEach(data => {
-    //         console.log('nombre: ', data.numero, ' - cant escritorios: ', data.cantidad_escritorios);
-    //     });
-    // });
+    // Procesar las promesas en la cola secuencialmente
+    for (const processPromise of processQueue) {
+        await processPromise();
+        console.log("\n")
+    }
 
     res.json({
         message: "Funcionó con éxito"
