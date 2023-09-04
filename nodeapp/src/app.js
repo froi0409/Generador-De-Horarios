@@ -3,6 +3,7 @@ const cors = require('cors');
 const db = require('./configs/database.config');
 // Import routes
 const FilesRoutes = require('./routes/files.routes');
+const ProceedingsRoutes = require('./routes/proceedings.routes');
 
 
 db.connectDB();
@@ -19,6 +20,7 @@ app.get('/', ( req, res ) => {
 });
 
 app.use('/api', FilesRoutes);
+app.use('/api', ProceedingsRoutes);
 
 module.exports = {
     app
