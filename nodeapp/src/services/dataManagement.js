@@ -13,10 +13,8 @@ async function buildClassSchedule() {
         const classrooms = await conn.query('SELECT * FROM Salon');
         const sections = await conn.query('SELECT * FROM Seccion');
         
-        const classSchedule = generateDefaultSchedule(classrooms);
+        const classSchedule = await generateDefaultSchedule(conn, classrooms);
         
-        console.log(classSchedule);
-
     } catch (error) {
         console.log(error)
     } finally {
@@ -24,24 +22,25 @@ async function buildClassSchedule() {
     }
 }
 
-function generateDefaultSchedule(classrooms) {
+async function generateDefaultSchedule(conn, classrooms) {
     const classSchedule = [];
 
     try {
-        for (let i = 13; i <= 21; i++) {
+        for (let i = 12; i <= 21; i++) {
             const hour = [];
             const startTime = i + ':00';
             const endTime = (i + 1) + ':00';
 
             for (const classroom of classrooms) {
-                const slot = new Slot(startTime, endTime, eachClassroom.nombre);
+                const slot = new Slot(startTime, endTime, classroom.nombre);
                 hour.push(slot);
             }
 
             classSchedule.push(hour);
         }
+        return classSchedule;
     } catch (error) {
-        console.error('Ocurrió un error al generar horario');
+        console.error(`Ocurrió un error al generar el horario ${error}`);
     } finally {
         if (conn) conn.end();
     }
