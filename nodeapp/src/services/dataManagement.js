@@ -1,5 +1,6 @@
 const db = require('../configs/database.config');
 const Slot = require('../services/Other/Slot');
+const priorities = require('../services/priorities');
 
 async function buildClassSchedule() {
     const conn = await db.getConnection();
@@ -13,7 +14,20 @@ async function buildClassSchedule() {
         const classrooms = await conn.query('SELECT * FROM Salon');
         const sections = await conn.query('SELECT * FROM Seccion');
         
+        // Package data
+        const data = {
+            careers,
+            courses,
+            coursesCareers,
+            professors,
+            professorsCourses,
+            classrooms,
+            sections
+        }
+
         const classSchedule = await generateDefaultSchedule(conn, classrooms);
+        priorities.professorPriority(classSchedule, data);
+
         
     } catch (error) {
         console.log(error)
@@ -24,8 +38,9 @@ async function buildClassSchedule() {
 
 async function generateDefaultSchedule(conn, classrooms) {
     const classSchedule = [];
-
+    
     try {
+        // 12 and 21 - start time and end time
         for (let i = 12; i <= 21; i++) {
             const hour = [];
             const startTime = i + ':00';
@@ -38,6 +53,9 @@ async function generateDefaultSchedule(conn, classrooms) {
 
             classSchedule.push(hour);
         }
+
+        console.log(classSchedule);
+
         return classSchedule;
     } catch (error) {
         console.error(`Ocurrió un error al generar el horario ${error}`);

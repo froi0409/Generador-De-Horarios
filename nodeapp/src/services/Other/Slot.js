@@ -6,10 +6,21 @@ class Slot {
         this.classroom = classroom;
 
         this.course = undefined;
+        this.warningMessage = undefined;
+        this.warningPriority = undefined;
     }
 
     print() {
         return `Inicio: ${this.startTime}\nFin: ${this.endTime}\nClase: ${this.classroom}\nCurso: ${this.course}`;
+    }
+
+    setWarningMessage(warningMessage, warningPriority) {
+        this.warningMessage = warningMessage;
+        this.warningPriority = warningPriority
+    }
+
+    setCourse(course) {
+        this.course = course;
     }
 }
 
