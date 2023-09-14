@@ -6,6 +6,8 @@ class Slot {
         this.classroom = classroom;
 
         this.course = undefined;
+        this.idProfessor = undefined;
+
         this.warningMessage = undefined;
         this.warningPriority = undefined;
     }

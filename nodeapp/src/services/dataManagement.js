@@ -25,10 +25,11 @@ async function buildClassSchedule() {
             sections
         }
 
-        const classSchedule = await generateDefaultSchedule(conn, classrooms);
-        priorities.professorPriority(classSchedule, data);
+        let classSchedule = await generateDefaultSchedule(conn, classrooms);
+        classSchedule = await priorities.professorPriority(classSchedule, data);
 
-        
+
+        return classSchedule;
     } catch (error) {
         console.log(error)
     } finally {
@@ -53,8 +54,6 @@ async function generateDefaultSchedule(conn, classrooms) {
 
             classSchedule.push(hour);
         }
-
-        console.log(classSchedule);
 
         return classSchedule;
     } catch (error) {
