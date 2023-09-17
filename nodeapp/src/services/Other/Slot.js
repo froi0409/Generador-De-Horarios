@@ -5,8 +5,10 @@ class Slot {
         this.endTime = endTime;
         this.classroom = classroom;
 
-        this.course = undefined;
-        this.idProfessor = undefined;
+        this.courseId = undefined;
+        this.courseName = undefined;
+        this.professorId = undefined;
+        this.professorName = undefined,
 
         this.warningMessage = undefined;
         this.warningPriority = undefined;
