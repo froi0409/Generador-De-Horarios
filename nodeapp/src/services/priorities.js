@@ -41,14 +41,10 @@ async function putSections (classSchedule, sections, professorsCourses) {
                     }
                 }
                 //if (overlap) break; // Para evitar hacer procesos de más
-                cont++;
-                console.log(cont)
                 
                 //Si no traslapa, verificamos que exista algún docente que pueda dar el curso
                 let availableProfessor = false;
                 let selectedProfessor = {};
-                // Verificamos si el titular está disponible
-                let titularAvailable = false;
                 
                 for (const professor of professorsCourses) {
                     const idP = String(professor.id_profesor);
@@ -65,7 +61,17 @@ async function putSections (classSchedule, sections, professorsCourses) {
 
                 // Si availableProfessor es falso, quiere decir que el profesor titular no está disponible, por lo que habrá que buscar a otro profesor
                 if (!availableProfessor) {
-
+                    for (const professor of professorsCourses) {
+                        if (professor.titular === 0 && professor.materia === section.codigo_curso) {
+                            if (isFree(professor.id_profesor, classSchedule[i])) {
+                                selectedProfessor.id_profesor = String(professor.id_profesor);
+                                selectedProfessor.first_name = professor.nombre_profesor;
+                                selectedProfessor.last_name = professor.apellido;
+                                availableProfessor = true;
+                                break;
+                            }
+                        }
+                    }
                 }
 
                 //Si no traslapa y hay docente disponible en el horario, lo colocamos en el salón disponible con el número más cercano a la cantidad de alumnos en la sección
@@ -99,7 +105,7 @@ async function putSections (classSchedule, sections, professorsCourses) {
             }
         }
     }
-    console.log(sectionsToRemove);
+    console.log(`Secciones removidas (a nivel de arreglo): ${sectionsToRemove}`);
     return classSchedule;
 }
 
