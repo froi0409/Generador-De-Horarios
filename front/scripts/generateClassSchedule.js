@@ -87,7 +87,7 @@ async function generarHorario() {
 
                 // Agregar el mensaje debajo de la tabla
                 const messageContainer = document.getElementById('messageContainer');
-                messageContainer.textContent = data.message;
+                messageContainer.textContent = 'Indice de Eficiencia de Horario (I.E.H.): ' +  data.message;
             } else {
                 console.log('El formato de los datos recibidos no es válido.');
             }

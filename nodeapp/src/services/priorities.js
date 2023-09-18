@@ -4,7 +4,7 @@ async function coursePriority(classSchedule) {
     const conn = await db.getConnection();
 
     try {
-        // Get course by career
+        // Get sections by career
         const sections = await conn.query('SELECT m.codigo AS codigo_curso,s.letra,m.nombre AS nombre_curso,m.numero_semestre,mc.carrera,s.cantidad_estudiantes FROM Seccion AS s INNER JOIN Materia AS m ON s.materia=m.codigo LEFT JOIN Materia_Carrera AS mc ON m.codigo=mc.materia GROUP BY codigo_curso,letra ORDER BY carrera,numero_semestre;');
         
         // Get professor by course
