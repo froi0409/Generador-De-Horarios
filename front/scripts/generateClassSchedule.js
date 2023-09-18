@@ -25,6 +25,9 @@ async function generarHorario() {
             table.style.borderCollapse = "collapse"; // Agregar colapso de bordes
             const tbody = document.createElement("tbody");
 
+            // Colores para las carreras del 2 al 5
+            const coloresCarreras = ['#FFB6C1', '#87CEEB', '#90EE90', '#FFA07A'];
+
             if (data.classSchedule && Array.isArray(data.classSchedule)) {
                 // Crear la primera fila con los nombres de los salones
                 const firstRow = tbody.insertRow();
@@ -43,11 +46,11 @@ async function generarHorario() {
                 // Ordenar los salones numéricamente
                 const sortedSalones = [...salones].sort((a, b) => a - b);
 
-                // Agregar los nombres de los salones a la primera fila
+                // Agregar los nombres de los salones a la primera fila y aplicar bordes
                 sortedSalones.forEach(salon => {
                     const cell = firstRow.insertCell();
                     cell.textContent = `Salón ${salon}`;
-                    cell.style.border = "1px solid #ddd"; // Aplicar borde a las celdas de nombres de salones
+                    cell.style.border = "1px solid #ddd";
                 });
 
                 // Iterar sobre los horarios y salones
@@ -55,10 +58,10 @@ async function generarHorario() {
                     const row = tbody.insertRow();
 
                     if (horario && Array.isArray(horario)) {
-                        // Agregar el horario en la primera columna
+                        // Agregar el horario en la primera columna y aplicar borde
                         const horaCell = row.insertCell();
                         horaCell.textContent = `${horario[0].startTime} - ${horario[0].endTime}`;
-                        horaCell.style.border = "1px solid #ddd"; // Aplicar borde a la celda de encabezado
+                        horaCell.style.border = "1px solid #ddd";
 
                         // Iterar sobre los salones (a partir del segundo elemento de cada arreglo)
                         for (let indexSalon = 0; indexSalon < sortedSalones.length; indexSalon++) {
@@ -68,7 +71,15 @@ async function generarHorario() {
                             cell.style.border = "1px solid #ddd"; // Aplicar borde a las celdas regulares
 
                             if (clase && clase.courseName) {
-                                cell.textContent = `${clase.courseName}\n${clase.professorFirstName} ${clase.professorLastName}`;
+                                cell.textContent = `${clase.courseName}\n${clase.professorFirstName} ${clase.professorLastName}\n${clase.sectionLetter}\n${clase.semesterNumber}`;
+                                if (clase.career) {
+                                    const carrera = parseInt(clase.career);
+                                    if (carrera === 1) {
+                                        cell.style.backgroundColor = '#FFFFCC'; // Amarillo claro para carrera 1
+                                    } else if (carrera >= 2 && carrera <= 5) {
+                                        cell.style.backgroundColor = coloresCarreras[carrera - 2]; // Colores para carreras 2 al 5
+                                    }
+                                }
                             } else {
                                 cell.textContent = "Disponible";
                             }
