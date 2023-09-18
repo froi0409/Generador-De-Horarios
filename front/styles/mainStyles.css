@@ -95,3 +95,29 @@
     background-size: cover;
     height: calc(100vh - 80px);
   }
+  /* Estilo para bordes de la tabla y filas */
+table {
+    border-collapse: collapse;
+    width: 100%;
+    border: 1px solid #ddd; /* Borde de la tabla */
+  }
+  
+  table, th, td {
+    border: 1px solid #ddd; /* Borde de las celdas */
+  }
+  
+  th, td {
+    padding: 8px;
+    text-align: left;
+  }
+  
+  /* Estilo para las filas de encabezado */
+  th {
+    background-color: #f2f2f2; /* Color de fondo del encabezado */
+  }
+  
+  /* Estilo para las filas impares */
+  tr:nth-child(odd) {
+    background-color: #f2f2f2; /* Color de fondo de filas impares */
+  }
+  
