@@ -1,5 +1,5 @@
 {
-    "message": "Horario generado con éxito",
+    "message": 93.75,
     "classSchedule": [
         [
             {
@@ -189,7 +189,8 @@
                 "courseName": "Ingenieria Electrica 1",
                 "semesterNumber": 5,
                 "career": "2",
-                "warningPriority": 0
+                "warningMessage": "Horario sin Docente",
+                "warningPriority": 1
             },
             {
                 "startTime": "14:00",
@@ -254,7 +255,8 @@
                 "courseName": "Resistencia de Materiales 1",
                 "semesterNumber": 5,
                 "career": "2",
-                "warningPriority": 0
+                "warningMessage": "Horario sin Docente",
+                "warningPriority": 1
             },
             {
                 "startTime": "15:00",
@@ -371,7 +373,8 @@
                 "courseName": "Logica",
                 "semesterNumber": 4,
                 "career": "2",
-                "warningPriority": 0
+                "warningMessage": "Horario sin Docente",
+                "warningPriority": 1
             },
             {
                 "startTime": "15:00",

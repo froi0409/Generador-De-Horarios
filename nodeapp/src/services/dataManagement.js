@@ -46,7 +46,20 @@ async function generateDefaultSchedule(conn, classrooms) {
     }
 }
 
+async function verifyColorWarning(classSchedule) {
+    for (let i = 0; i < classSchedule.length; i++) {
+        for (let j = 0; j < classSchedule[i].length; j++) {
+            if (classSchedule[i][j].courseId !== undefined && classSchedule[i][j].professorId === undefined) {
+                classSchedule[i][j].warningPriority = 1;
+                classSchedule[i][j].warningMessage = 'Horario sin Docente';
+            }
+        }
+    }
+    return classSchedule;
+}
+
 module.exports = {
-    buildClassSchedule
+    buildClassSchedule,
+    verifyColorWarning
 }
 

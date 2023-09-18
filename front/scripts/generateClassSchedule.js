@@ -78,6 +78,15 @@ async function generarHorario() {
                                         cell.style.backgroundColor = coloresCarreras[carrera - 1]; // Asignar colores según la carrera
                                     }
                                 }
+
+                                if (clase.warningPriority === 1) {
+                                    cell.style.color = "red"; // Cambiar el color del texto a rojo
+                                    cell.title = clase.warningMessage; // Agregar el mensaje como título
+                                    cell.style.cursor = "pointer"; // Cambiar el cursor a pointer
+                                    cell.addEventListener("click", () => {
+                                        alert(clase.warningMessage); // Mostrar el mensaje en un cuadro de alerta al hacer clic
+                                    });
+                                }
                             } else {
                                 cell.textContent = "Disponible";
                             }
@@ -99,4 +108,5 @@ async function generarHorario() {
             console.log('error:', error);
         });
 }
+
 
