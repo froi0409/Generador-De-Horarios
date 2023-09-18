@@ -25,8 +25,8 @@ async function generarHorario() {
             table.style.borderCollapse = "collapse"; // Agregar colapso de bordes
             const tbody = document.createElement("tbody");
 
-            // Colores para las carreras del 2 al 5
-            const coloresCarreras = ['#FFB6C1', '#87CEEB', '#90EE90', '#FFA07A'];
+            // Colores para las carreras del 1 al 5
+            const coloresCarreras = ['#87CEEB', '#FFA07A', '#90EE90', '#FFB6C1', '#FFFFCC'];
 
             if (data.classSchedule && Array.isArray(data.classSchedule)) {
                 // Crear la primera fila con los nombres de los salones
@@ -74,10 +74,8 @@ async function generarHorario() {
                                 cell.textContent = `${clase.courseName}\n${clase.professorFirstName} ${clase.professorLastName}\n${clase.sectionLetter}\n${clase.semesterNumber}`;
                                 if (clase.career) {
                                     const carrera = parseInt(clase.career);
-                                    if (carrera === 1) {
-                                        cell.style.backgroundColor = '#FFFFCC'; // Amarillo claro para carrera 1
-                                    } else if (carrera >= 2 && carrera <= 5) {
-                                        cell.style.backgroundColor = coloresCarreras[carrera - 2]; // Colores para carreras 2 al 5
+                                    if (carrera >= 1 && carrera <= 5) {
+                                        cell.style.backgroundColor = coloresCarreras[carrera - 1]; // Asignar colores según la carrera
                                     }
                                 }
                             } else {
@@ -101,3 +99,4 @@ async function generarHorario() {
             console.log('error:', error);
         });
 }
+
