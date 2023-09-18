@@ -4,6 +4,8 @@ const inserts = require('../services/databaseManagement/inserts');
 
 const proccessCsvFiles =  async ( req, res ) => { 
     const files = req.files; // Get files
+    
+    console.log(files);
     // Define a mapping of file names to insertion functions
     const insertFunctions = {
         'Salones.csv': inserts.insertSalones,
@@ -15,6 +17,7 @@ const proccessCsvFiles =  async ( req, res ) => {
         'Secciones.csv': inserts.insertSection
     };
 
+    
 
     const processQueue = [];
 
