@@ -120,4 +120,12 @@ table {
   tr:nth-child(odd) {
     background-color: #f2f2f2; /* Color de fondo de filas impares */
   }
-  
+
+  /* Estilo para el contenedor del mensaje */
+#messageContainer {
+    margin-top: 20px; /* Espacio superior para separar el mensaje de la tabla */
+    font-size: 18px; /* Tamaño de fuente del mensaje */
+    font-weight: bold; /* Texto en negrita */
+    color: #333; /* Color del texto */
+    text-align: center; /* Alinear el texto al centro */
+}
