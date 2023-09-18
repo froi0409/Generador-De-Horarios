@@ -1,14 +1,20 @@
 class Slot {
     
-    constructor(startTime, endTime, classroom) {
+    constructor(startTime, endTime, classroom, classroomCapacity) {
         this.startTime = startTime;
         this.endTime = endTime;
         this.classroom = classroom;
+        this.classroomCapacity = classroomCapacity;
+
+        this.sectionLetter = undefined;
 
         this.courseId = undefined;
         this.courseName = undefined;
+        this.semesterNumber = undefined;
+        this.career = undefined;
         this.professorId = undefined;
-        this.professorName = undefined,
+        this.professorFirstName = undefined;
+        this.professorLastName = undefined;
 
         this.warningMessage = undefined;
         this.warningPriority = undefined;

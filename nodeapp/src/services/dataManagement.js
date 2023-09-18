@@ -31,7 +31,7 @@ async function generateDefaultSchedule(conn, classrooms) {
             const endTime = (i + 1) + ':00';
 
             for (const classroom of classrooms) {
-                const slot = new Slot(startTime, endTime, classroom.nombre);
+                const slot = new Slot(startTime, endTime, classroom.nombre, classroom.escritorios);
                 hour.push(slot);
             }
 
