@@ -3,7 +3,7 @@ const classScheduleController = require('../controllers/classScheduleController'
 
 const router = Router();
 
-router.post('/classSchedule', classScheduleController.classSchedule);
+router.get('/classSchedule', classScheduleController.classSchedule);
 
 
 module.exports = router;
