@@ -1,60 +1,31 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-  <head>
+<head>
     <meta charset="utf-8">
     <title>Pagina Principal</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles/mainStyles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
-  </head>
-  <body>
-    <nav>
-      <input type="checkbox" id="check">
-      <label for="check" class="checkbtn">
+</head>
+<body>
+<nav>
+    <input type="checkbox" id="check">
+    <label for="check" class="checkbtn">
         <i class="fas fa-bars"></i>
-      </label>
-      <label class="logo">Generador de Horarios</label>
-      <ul>
+    </label>
+    <label class="logo">Generador de Horarios</label>
+    <ul>
         <li><a class="active" href="#">Home</a></li>
         <li><a href="#">Subir Data</a></li>
         <li><a href="#" onClick="generarHorario()">Generar Horario</a></li>
-      </ul>
-    </nav>
-    <section>
-        <div id="recibir_data">
-            <table id="horarioTable" border="1">
-                <thead>
-                    <tr>
-                        <th>Horario</th>
-                        <th>Salón 1</th>
-                        <th>Salón 10</th>
-                        <th>Salón 11</th>
-                        <th>Salón 12</th>
-                        <th>Salón 2</th>
-                        <th>Salón 3</th>
-                        <th>Salón 4</th>
-                        <th>Salón 5</th>
-                        <th>Salón 6</th>
-                        <th>Salón 7</th>
-                        <th>Salón 8</th>
-                        <th>Salón 9</th>
-                        <th>Hugo Pineda</th>
-                        <th>Lab Aguas</th>
-                        <th>Lab FIsica</th>
-                        <th>Lab Industrial</th>
-                        <th>Salón Mayor</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <!-- Los datos se agregarán aquí usando JavaScript -->
-                </tbody>
-            </table>
-            
-        </div>
-    </section>
+    </ul>
+</nav>
+<section>
+    <div id="recibir_data">
+        <!-- La tabla se generará aquí usando JavaScript -->
+    </div>
+</section>
 
-    
-
-    <script src="scripts/generateClassSchedule.js"></script>
-  </body>
+<script src="scripts/generateClassSchedule.js"></script>
+</body>
 </html>
